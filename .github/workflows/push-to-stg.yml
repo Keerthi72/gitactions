@@ -22,7 +22,11 @@ jobs:
       - name: Set GOOGLE_APPLICATION_CREDENTIALS
         run: echo "$GCP_SA_KEY" > $HOME/credentials.json
         env:
-          GCP_SA_KEY: ${{ secrets.Actions.GCP_SA_KEY }}
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+          
+      - name: Configure gsutil with service account key
+        run: gcloud auth activate-service-account --key-file=$HOME/credentials.json
+        
       - name: Deploy to GCS
         run: |
           gsutil cp -r ./.github/workflows/push-to-stg.yml gs://test-storage-auto
