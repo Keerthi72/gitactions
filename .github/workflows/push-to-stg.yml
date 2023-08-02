@@ -23,4 +23,4 @@ jobs:
 
       - name: Deploy to GCS
         run: |
-          gsutil cp -r ./.github/workflows/* gs://test-storage-auto
+          gsutil cp -r ./.github/workflows/push-to-stg.yml gs://test-storage-auto
