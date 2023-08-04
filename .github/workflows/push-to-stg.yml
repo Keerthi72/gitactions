@@ -27,8 +27,8 @@ jobs:
       - name: Configure gsutil with service account key
         run: |-
           echo "Authenticate to gsutil"
-          echo '${{secrets.GCP_SA_KEY}}' > credentials.json
-          gcloud auth login --no-browser --cred-file=credentials.json
+          echo '${{secrets.GCP_SA_KEY}}' > key.json
+          gcloud auth activate-service-account --key-file=key.json 
         
       - name: Deploy to GCS
         run: |
